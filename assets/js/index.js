@@ -1,10 +1,14 @@
 // Collections
 
 // Selectors
-const $body = document.querySelector('body');
+const $ = {
+       body: document.querySelector('body'),
+     footer: document.querySelector('footer'),
+     button: document.getElementById('button'),
+    display: document.getElementById('display'),
 
-const $button = document.getElementById('button');
-const $display = document.getElementById('display');
+}
+
 const $palettes = {
        une: document.getElementById('une'),     // the base color
       deux: document.getElementById('deux'),    //
@@ -16,17 +20,18 @@ const $palettes = {
 
 
 // Events
-$button.addEventListener('click', () => {
+$.button.addEventListener('click', () => {
     let color = genMenageATrois();
-
-    $body.style.backgroundColor = genRgbColor(color, 1);
+    $.body.style.backgroundColor = genRgbColor(color, 1);
+    $.footer.style.backgroundColor = genRgbColor(color, 4);
+    $.button.style.color = genRgbColor(color, 4);
+    $.button.style.backgroundColor = genRgbColor(color, 1);
     $palettes.une.style.backgroundColor = genRgbColor(color, 1);
     $palettes.deux.style.backgroundColor = genRgbColor(color, 2);
     $palettes.trois.style.backgroundColor = genRgbColor(color, 3);
     $palettes.quatre.style.backgroundColor = genRgbColor(color, 4);
     $palettes.cinq.style.backgroundColor = genRgbColor(color, 5);
 })
-
 
 // Functions
 function genRandomNumber() {
@@ -76,26 +81,3 @@ function genRgbColor(nom, e) {
             return `rgb(${colorCinq[0]}, ${colorCinq[1]}, ${colorCinq[2]})`;
     }
 }
-
-
-
-
-
-/*
-function genHexColor() {
-    const characters = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
-    const hex = genRandomNumber();
-    const rr = `${characters[genRandomNumber()]}${characters[genRandomNumber()]}`;  // red
-    const gg = `${characters[genRandomNumber()]}${characters[genRandomNumber()]}`;  // green
-    const bb = `${characters[genRandomNumber()]}${characters[genRandomNumber()]}`;  // blue
-    const rbg = `#${rr}${gg}${bb}`
-    return rbg;
-}
-*/
-
-/*
-function genColorBase() {
-    const color = genHexNumber();
-    return color;
-}
-*/
