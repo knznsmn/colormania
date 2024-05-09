@@ -2,6 +2,7 @@
 
 // Selectors
 const $ = {
+    base    : document.querySelector(':root'),
     body    : document.querySelector('body'),
     footer  : document.querySelector('footer'),
     display : document.getElementById('display'),
@@ -13,10 +14,49 @@ const $palettes = {
     quatre: document.getElementById('quatre'),  // complementary
       cinq: document.getElementById('cinq')     // dark color
 };
+const hue = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--hue"));
+const saturation = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--saturation"));
+const light = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--light"));
+$palettes.une.addEventListener('click', (e) => {
+    // Mix the colors on this palette now.
+    const neoHue = genRandomNo(0, 255);
+    const mainColor = `hsl(${neoHue} ${saturation} ${light})`;
+    const accentColor = `hsl(${complementNo(neoHue)} ${saturation} ${light})`;
+    const shadeColor1 = `hsl(${neoHue} ${genRandomNo(30, 50)} ${genRandomNo(25, 39)})`;
+    const shadeColor2 = `hsl(${neoHue} ${genRandomNo(50, 75)} ${genRandomNo(40, 50)})`;
+    const shadeColor3 = `hsl(${neoHue} ${genRandomNo(76, 100)} ${genRandomNo(51, 70)})`;
+    $palettes.une.style.setProperty('background-color', mainColor);
+    $palettes.deux.style.setProperty('background-color', shadeColor2);
+    $palettes.trois.style.setProperty('background-color', shadeColor3);
+    $palettes.quatre.style.setProperty('background-color', accentColor);
+    $palettes.cinq.style.setProperty('background-color', shadeColor1);
+    console.log(hue);
+    console.log(saturation);
+    console.log(light);
+    console.log(mainColor);
+    console.log(accentColor);
+    console.log(shadeColor1);
+    console.log(shadeColor2);
+    console.log(shadeColor3);
+    console.log(`neoHue is ${neoHue}`)
+})
 
 
 
-
+function complementNo(n) {
+    const semicircle = 180, circle = 360;
+    let opposite = n + semicircle;
+    if (opposite > circle) {
+        opposite -= circle;
+        return opposite
+    }
+    else return opposite;
+}
+function genRandomNo(min, max) {
+    let number;
+    number = Math.floor(Math.random() * (max - min)) + min;
+    return number;
+}
 /***********************************************************
  Old code
  */
@@ -35,13 +75,7 @@ const $palettes = {
 // })
 //
 // // Functions
-// function genRandomNumber() {
-//     const max = 42;
-//     const min = 10;
-//     let number;
-//     number = Math.floor(Math.random() * (max - min)) + min;
-//     return number;
-// }
+
 // function genMenageATrois() {
 //     const max = 255;
 //     const min = 0;
