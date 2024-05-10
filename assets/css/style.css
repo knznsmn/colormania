@@ -1,3 +1,89 @@
+@font-face {
+    font-family: 'ico';
+    src:  url('/assets/fonts/ico.eot?7uwfui');
+    src:  url('/assets/fonts/ico.eot?7uwfui#iefix') format('embedded-opentype'),
+    url('/assets/fonts/ico.ttf?7uwfui') format('truetype'),
+    url('/assets/fonts/ico.woff?7uwfui') format('woff'),
+    url('/assets/fonts/ico.svg?7uwfui#ico') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+i, blockquote p::before, blockquote p::after {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'ico' !important;
+    speak: never;
+    font-style: normal;
+    font-size: 1rem;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ico-colormania:before {
+    content: "\e902";
+}
+.ico-javascript:before {
+    content: "\e901";
+}
+.ico-link:before {
+    content: "\e9cb";
+}
+.ico-facebook:before {
+    content: "\ea90";
+}
+.ico-whatsapp:before {
+    content: "\ea93";
+}
+.ico-twitter:before {
+    content: "\ea96";
+}
+.ico-linkedin:before {
+    content: "\eaca";
+}
+.ico-refresh:before {
+    content: "\21bb";
+}
+.ico-home:before {
+    content: "\e900";
+}
+.ico-quotes-left:before {
+    content: "\e977";
+}
+.ico-quotes-right:before {
+    content: "\e978";
+}
+.ico-spinner:before {
+    content: "\e982";
+}
+.ico-magic-wand:before {
+    content: "\e997";
+}
+.ico-switch:before {
+    content: "\e9b6";
+}
+.ico-embed:before {
+    content: "\ea80";
+}
+.ico-github:before {
+    content: "\eab0";
+}
+.ico-tux:before {
+    content: "\eabd";
+}
+.ico-html5:before {
+    content: "\eae4";
+}
+.ico-css3:before {
+    content: "\eae6";
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -48,7 +134,7 @@ section div {
     height: 100%;
 }
 blockquote {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.01);
     color: whitesmoke;
     font-size: 1rem;
     border-radius: 0.5rem;
@@ -56,13 +142,16 @@ blockquote {
 }
 blockquote p {
     padding: 0.5rem;
-
 }
 blockquote p::before {
-    content: '\201c';
+    content: '\e977';
+    padding: 0.2rem 0.5rem;
+    font-size: 1.5rem;
 }
 blockquote p::after {
-    content: '\201d';
+    content: '\e978';
+    padding: 0.2rem 0.5rem;
+    font-size: 1.5rem;
 }
 blockquote footer {
     font-size: 0.75rem;
@@ -105,31 +194,36 @@ a:hover {
     grid-row: 4 / span 4;
     z-index: 10;
     display: flex;
+    cursor: pointer;
 }
 .une {
-    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
     opacity: 1;
-    transition: opacity 1s;
+    -webkit-transition: opacity 3s;
+    -moz-transition: opacity 3s;
+    transition: opacity 3s;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
 }
 #quote {
-    background-color: transparent;
     grid-column: 7 / span 4;
     grid-row: 4 / span 4;
 }
 .fadeOut {
     opacity: 0;
-    transition: opacity 1s
+    -webkit-transition: opacity 3s;
+    -moz-transition: opacity 3s;
+    transition: opacity 3s;
 }
 .fadeIn {
-    /*opacity: 1;*/
-    /*transition: opacity 1s;*/
-    opacity:1;
+    opacity: 1;
     -webkit-transition: opacity 3s;
     -moz-transition: opacity 3s;
     transition: opacity 3s;
 }
 .hidden {
     opacity: 0;
+}
+.une-bg {
+    background-color: transparent;
 }
 #deux {
     background-color: transparent;

@@ -18,28 +18,34 @@ const saturation = Number.parseInt(getComputedStyle($palettes.une).getPropertyVa
 const light = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--light"));
 
 // Events listeners
-$palettes.une.addEventListener('click', (e) => {colorMania()})
-document.addEventListener("keydown", (e) => {colorMania()})
+$palettes.une.addEventListener('click', (event) => {colorMania()})
+document.addEventListener("keydown", (event) => {
+    if (event.key === ' ') {
+        colorMania();
+    } else {
+        console.log(event);
+    }})
 // Function Hall
 function colorMania() {
     // Mix the colors on this palette now.
-    const neoHue             = genRandomNo(0, 360);
-    const mainColor   = `hsl(${neoHue} ${saturation} ${light})`;
+    const neoHue = genRandomNo(0, 360);
+    const mainColor = `hsl(${neoHue} ${saturation} ${light})`;
     const accentColor = `hsl(${complementNo(neoHue)} ${saturation} ${light})`;
     const shadeColor1 = `hsl(${neoHue} ${genRandomNo(30, 50)} ${genRandomNo(20, 35)})`;
     const shadeColor2 = `hsl(${neoHue} ${genRandomNo(51, 75)} ${genRandomNo(36, 50)})`;
     const shadeColor3 = `hsl(${neoHue} ${genRandomNo(76, 100)} ${genRandomNo(51, 70)})`;
 
-    const rawColors    = [accentColor, shadeColor1, shadeColor2, shadeColor3];
+    const rawColors = [accentColor, shadeColor1, shadeColor2, shadeColor3];
     const colors = shuffler(rawColors)
     const $colors = {
-        main    : mainColor,
-        deux    : colors[0],
-        trois   : colors[1],
-        quatre  : colors[2],
-        cinq    : colors[3],
+        main: mainColor,
+        deux: colors[0],
+        trois: colors[1],
+        quatre: colors[2],
+        cinq: colors[3],
     }
     $palettes.une.classList.add('une');
+    $palettes.une.classList.remove('une-bg');
     $palettes.deux.classList.remove('hidden');
     $palettes.trois.classList.remove('hidden');
     $palettes.quatre.classList.remove('hidden');
@@ -59,13 +65,8 @@ function colorMania() {
     $palettes.trois.textContent = $colors.trois;
     $palettes.quatre.textContent = $colors.quatre;
     $palettes.cinq.textContent = $colors.cinq;
-
-    if(slideSource.className){
-        document.getElementById('slideSource').className = '';
-    } else {
-        document.getElementById('slideSource').className = 'fade';
-    }
 }
+
 
 function complementNo(n) {
     const semicircle = 180, circle = 360;
