@@ -8,40 +8,36 @@ const $ = {
     display : document.getElementById('display'),
 }
 const $palettes = {
-       une: document.getElementById('une'),     // the base color
-      deux: document.getElementById('deux'),    //
-     trois: document.getElementById('trois'),   //
-    quatre: document.getElementById('quatre'),  // complementary
-      cinq: document.getElementById('cinq')     // dark color
+    une     : document.getElementById('une'),     // the base color
+    deux    : document.getElementById('deux'),    //
+    trois   : document.getElementById('trois'),   //
+    quatre  : document.getElementById('quatre'),  // complementary
+    cinq    : document.getElementById('cinq')     // dark color
 };
 const hue = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--hue"));
 const saturation = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--saturation"));
 const light = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--light"));
-$palettes.une.addEventListener('click', (e) => {
+$palettes.une.addEventListener('click', (e) => {colorMania()})
+document.addEventListener("keydown", (e) => {colorMania()})
+
+// Function Hall
+function colorMania() {
     // Mix the colors on this palette now.
-    const neoHue = genRandomNo(0, 255);
-    const mainColor = `hsl(${neoHue} ${saturation} ${light})`;
+    const neoHue             = genRandomNo(0, 255);
+    const mainColor   = `hsl(${neoHue} ${saturation} ${light})`;
     const accentColor = `hsl(${complementNo(neoHue)} ${saturation} ${light})`;
-    const shadeColor1 = `hsl(${neoHue} ${genRandomNo(30, 50)} ${genRandomNo(25, 39)})`;
-    const shadeColor2 = `hsl(${neoHue} ${genRandomNo(50, 75)} ${genRandomNo(40, 50)})`;
+    const shadeColor1 = `hsl(${neoHue} ${genRandomNo(30, 50)} ${genRandomNo(20, 35)})`;
+    const shadeColor2 = `hsl(${neoHue} ${genRandomNo(51, 75)} ${genRandomNo(36, 50)})`;
     const shadeColor3 = `hsl(${neoHue} ${genRandomNo(76, 100)} ${genRandomNo(51, 70)})`;
+    const rawColors    = [accentColor, shadeColor1, shadeColor2, shadeColor3];
+    const colors = shuffler(rawColors)
+
     $palettes.une.style.setProperty('background-color', mainColor);
-    $palettes.deux.style.setProperty('background-color', shadeColor2);
-    $palettes.trois.style.setProperty('background-color', shadeColor3);
-    $palettes.quatre.style.setProperty('background-color', accentColor);
-    $palettes.cinq.style.setProperty('background-color', shadeColor1);
-    console.log(hue);
-    console.log(saturation);
-    console.log(light);
-    console.log(mainColor);
-    console.log(accentColor);
-    console.log(shadeColor1);
-    console.log(shadeColor2);
-    console.log(shadeColor3);
-    console.log(`neoHue is ${neoHue}`)
-})
-
-
+    $palettes.deux.style.setProperty('background-color', colors[0]);
+    $palettes.trois.style.setProperty('background-color', colors[1]);
+    $palettes.quatre.style.setProperty('background-color', colors[2]);
+    $palettes.cinq.style.setProperty('background-color', colors[3]);
+}
 
 function complementNo(n) {
     const semicircle = 180, circle = 360;
@@ -57,6 +53,19 @@ function genRandomNo(min, max) {
     number = Math.floor(Math.random() * (max - min)) + min;
     return number;
 }
+function shuffler(array){        // I stole this logic, shame
+    let count = array.length,
+        randomNumber,
+        temp;
+    while( count ){
+        randomNumber = Math.random() * count-- | 0;
+        temp = array[count];
+        array[count] = array[randomNumber];
+        array[randomNumber] = temp
+    }
+    return array;
+}
+
 /***********************************************************
  Old code
  */
@@ -118,3 +127,4 @@ function genRandomNo(min, max) {
 //             return `rgb(${colorCinq[0]}, ${colorCinq[1]}, ${colorCinq[2]})`;
 //     }
 // }
+
