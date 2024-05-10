@@ -8,6 +8,7 @@ const $ = {
     display : document.getElementById('display'),
     palette : document.querySelector('.hidden'),
     title   : document.getElementById('title'),
+    logo    : document.getElementById('logo'),
 }
 const $palettes = {
     une     : document.getElementById('une'),     // the base color
@@ -59,7 +60,8 @@ function colorMania() {
             console.log(box[i]);
         }
     }
-    $.title.style.setProperty('color', $colors.main);
+    $.logo.style.setProperty('color', accentColor);
+    $.title.style.setProperty('color', mainColor);
     $palettes.une.style.setProperty('background-color', $colors.main);
     $palettes.deux.style.setProperty('background-color', $colors.deux);
     $palettes.trois.style.setProperty('background-color', $colors.trois);
