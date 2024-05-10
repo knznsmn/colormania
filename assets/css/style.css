@@ -173,6 +173,9 @@ h1#title {
     font-size: 1rem;
     display: inline;
 }
+i#logo {
+    font-size: 1.25rem;
+}
 a:hover {
     color: hsl(var(--hue) var(--saturation) calc(var(--light) + 20));
 }
