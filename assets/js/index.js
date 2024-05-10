@@ -17,13 +17,15 @@ const $palettes = {
 const hue = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--hue"));
 const saturation = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--saturation"));
 const light = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--light"));
+
+// Events listeners
 $palettes.une.addEventListener('click', (e) => {colorMania()})
 document.addEventListener("keydown", (e) => {colorMania()})
 
 // Function Hall
 function colorMania() {
     // Mix the colors on this palette now.
-    const neoHue             = genRandomNo(0, 255);
+    const neoHue             = genRandomNo(0, 360);
     const mainColor   = `hsl(${neoHue} ${saturation} ${light})`;
     const accentColor = `hsl(${complementNo(neoHue)} ${saturation} ${light})`;
     const shadeColor1 = `hsl(${neoHue} ${genRandomNo(30, 50)} ${genRandomNo(20, 35)})`;
@@ -33,13 +35,13 @@ function colorMania() {
     const rawColors    = [accentColor, shadeColor1, shadeColor2, shadeColor3];
     const colors = shuffler(rawColors)
     const $colors = {
-        main : mainColor,
-        deux : colors[0],
-        trois : colors[1],
-        quatre : colors[2],
-        cinq : colors[3],
+        main    : mainColor,
+        deux    : colors[0],
+        trois   : colors[1],
+        quatre  : colors[2],
+        cinq    : colors[3],
     }
-
+    $palettes.une.classList.add('une');
     $palettes.une.style.setProperty('background-color', $colors.main);
     $palettes.deux.style.setProperty('background-color', $colors.deux);
     $palettes.trois.style.setProperty('background-color', $colors.trois);
