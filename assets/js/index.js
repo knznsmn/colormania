@@ -29,14 +29,28 @@ function colorMania() {
     const shadeColor1 = `hsl(${neoHue} ${genRandomNo(30, 50)} ${genRandomNo(20, 35)})`;
     const shadeColor2 = `hsl(${neoHue} ${genRandomNo(51, 75)} ${genRandomNo(36, 50)})`;
     const shadeColor3 = `hsl(${neoHue} ${genRandomNo(76, 100)} ${genRandomNo(51, 70)})`;
+
     const rawColors    = [accentColor, shadeColor1, shadeColor2, shadeColor3];
     const colors = shuffler(rawColors)
+    const $colors = {
+        main : mainColor,
+        deux : colors[0],
+        trois : colors[1],
+        quatre : colors[2],
+        cinq : colors[3],
+    }
 
-    $palettes.une.style.setProperty('background-color', mainColor);
-    $palettes.deux.style.setProperty('background-color', colors[0]);
-    $palettes.trois.style.setProperty('background-color', colors[1]);
-    $palettes.quatre.style.setProperty('background-color', colors[2]);
-    $palettes.cinq.style.setProperty('background-color', colors[3]);
+    $palettes.une.style.setProperty('background-color', $colors.main);
+    $palettes.deux.style.setProperty('background-color', $colors.deux);
+    $palettes.trois.style.setProperty('background-color', $colors.trois);
+    $palettes.quatre.style.setProperty('background-color', $colors.quatre);
+    $palettes.cinq.style.setProperty('background-color', $colors.cinq);
+
+    $palettes.une.textContent = $colors.main;
+    $palettes.deux.textContent = $colors.deux;
+    $palettes.trois.textContent = $colors.trois;
+    $palettes.quatre.textContent = $colors.quatre;
+    $palettes.cinq.textContent = $colors.cinq;
 }
 
 function complementNo(n) {
