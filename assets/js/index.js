@@ -14,14 +14,12 @@ const $palettes = {
     quatre  : document.getElementById('quatre'),  // complementary
     cinq    : document.getElementById('cinq')     // dark color
 };
-const hue = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--hue"));
 const saturation = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--saturation"));
 const light = Number.parseInt(getComputedStyle($palettes.une).getPropertyValue("--light"));
 
 // Events listeners
 $palettes.une.addEventListener('click', (e) => {colorMania()})
 document.addEventListener("keydown", (e) => {colorMania()})
-
 // Function Hall
 function colorMania() {
     // Mix the colors on this palette now.
@@ -42,6 +40,14 @@ function colorMania() {
         cinq    : colors[3],
     }
     $palettes.une.classList.add('une');
+    $palettes.deux.classList.remove('hidden');
+    $palettes.trois.classList.remove('hidden');
+    $palettes.quatre.classList.remove('hidden');
+    $palettes.cinq.classList.remove('hidden');
+    $palettes.deux.classList.add('fadeIn');
+    $palettes.trois.classList.add('fadeIn');
+    $palettes.quatre.classList.add('fadeIn');
+    $palettes.cinq.classList.add('fadeIn');
     $palettes.une.style.setProperty('background-color', $colors.main);
     $palettes.deux.style.setProperty('background-color', $colors.deux);
     $palettes.trois.style.setProperty('background-color', $colors.trois);
@@ -53,6 +59,12 @@ function colorMania() {
     $palettes.trois.textContent = $colors.trois;
     $palettes.quatre.textContent = $colors.quatre;
     $palettes.cinq.textContent = $colors.cinq;
+
+    if(slideSource.className){
+        document.getElementById('slideSource').className = '';
+    } else {
+        document.getElementById('slideSource').className = 'fade';
+    }
 }
 
 function complementNo(n) {
@@ -80,6 +92,18 @@ function shuffler(array){        // I stole this logic, shame
         array[randomNumber] = temp
     }
     return array;
+}
+function fadeIn(element) {    // I stole this too, Jesus I'm a thief now.
+    let op = 1;
+    let timer = setInterval(function () {
+        if (op <= 0.1){
+            clearInterval(timer);
+            element.style.display = 'none';
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= op * 0.1;
+    }, 50);
 }
 
 /***********************************************************
