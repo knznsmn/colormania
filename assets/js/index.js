@@ -6,6 +6,8 @@ const $ = {
     body    : document.querySelector('body'),
     footer  : document.querySelector('footer'),
     display : document.getElementById('display'),
+    palette : document.querySelector('.hidden'),
+    title   : document.getElementById('title'),
 }
 const $palettes = {
     une     : document.getElementById('une'),     // the base color
@@ -35,25 +37,29 @@ function colorMania() {
     const shadeColor2 = `hsl(${neoHue} ${genRandomNo(51, 75)} ${genRandomNo(36, 50)})`;
     const shadeColor3 = `hsl(${neoHue} ${genRandomNo(76, 100)} ${genRandomNo(51, 70)})`;
 
+    // Shuffle the colors around the box
     const rawColors = [accentColor, shadeColor1, shadeColor2, shadeColor3];
     const colors = shuffler(rawColors)
     const $colors = {
-        main: mainColor,
-        deux: colors[0],
-        trois: colors[1],
-        quatre: colors[2],
-        cinq: colors[3],
+        main    : mainColor,
+        deux    : colors[0],
+        trois   : colors[1],
+        quatre  : colors[2],
+        cinq    : colors[3],
     }
-    $palettes.une.classList.add('une');
     $palettes.une.classList.remove('une-bg');
-    $palettes.deux.classList.remove('hidden');
-    $palettes.trois.classList.remove('hidden');
-    $palettes.quatre.classList.remove('hidden');
-    $palettes.cinq.classList.remove('hidden');
-    $palettes.deux.classList.add('fadeIn');
-    $palettes.trois.classList.add('fadeIn');
-    $palettes.quatre.classList.add('fadeIn');
-    $palettes.cinq.classList.add('fadeIn');
+    $palettes.une.classList.add('une');
+
+    const box = [$palettes.deux, $palettes.trois, $palettes.quatre, $palettes.cinq];
+    for (let i = 0; i < box.length; i++) {
+        if (box[i].classList.contains('hidden')) {
+            box[i].classList.toggle('hidden');
+            box[i].classList.add('fadeIn');
+        } else {
+            console.log(box[i]);
+        }
+    }
+    $.title.style.setProperty('color', $colors.main);
     $palettes.une.style.setProperty('background-color', $colors.main);
     $palettes.deux.style.setProperty('background-color', $colors.deux);
     $palettes.trois.style.setProperty('background-color', $colors.trois);
